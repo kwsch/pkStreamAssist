@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlPanel));
             this.GB_Top = new System.Windows.Forms.GroupBox();
             this.CB_TStatus6 = new System.Windows.Forms.ComboBox();
@@ -68,6 +69,8 @@
             this.CB_TSpecies1 = new System.Windows.Forms.ComboBox();
             this.CHK_Update = new System.Windows.Forms.CheckBox();
             this.GB_Config = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.B_View = new System.Windows.Forms.Button();
             this.L_PCT = new System.Windows.Forms.Label();
             this.L_Opacity = new System.Windows.Forms.Label();
@@ -76,8 +79,9 @@
             this.L_PKMPerBattle = new System.Windows.Forms.Label();
             this.CB_PKMPerBattle = new System.Windows.Forms.ComboBox();
             this.CB_Lang = new System.Windows.Forms.ComboBox();
-            this.B_BReset = new System.Windows.Forms.Button();
-            this.B_TReset = new System.Windows.Forms.Button();
+            this.mnu_ResetClear = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnu_Reset = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_Clear = new System.Windows.Forms.ToolStripMenuItem();
             this.GB_Bot = new System.Windows.Forms.GroupBox();
             this.CB_BStatus6 = new System.Windows.Forms.ComboBox();
             this.CHK_BX6 = new System.Windows.Forms.CheckBox();
@@ -134,9 +138,12 @@
             this.PB_T3 = new System.Windows.Forms.PictureBox();
             this.PB_T2 = new System.Windows.Forms.PictureBox();
             this.PB_T1 = new System.Windows.Forms.PictureBox();
+            this.L_Shortcuts = new System.Windows.Forms.Label();
             this.GB_Top.SuspendLayout();
             this.GB_Config.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_PCT)).BeginInit();
+            this.mnu_ResetClear.SuspendLayout();
             this.GB_Bot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PB_F2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PB_B6)).BeginInit();
@@ -157,6 +164,7 @@
             // 
             this.GB_Top.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GB_Top.ContextMenuStrip = this.mnu_ResetClear;
             this.GB_Top.Controls.Add(this.CB_TStatus6);
             this.GB_Top.Controls.Add(this.CHK_TX6);
             this.GB_Top.Controls.Add(this.CHK_TU6);
@@ -712,6 +720,8 @@
             // GB_Config
             // 
             this.GB_Config.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GB_Config.Controls.Add(this.label1);
+            this.GB_Config.Controls.Add(this.numericUpDown1);
             this.GB_Config.Controls.Add(this.B_View);
             this.GB_Config.Controls.Add(this.L_PCT);
             this.GB_Config.Controls.Add(this.L_Opacity);
@@ -720,8 +730,6 @@
             this.GB_Config.Controls.Add(this.L_PKMPerBattle);
             this.GB_Config.Controls.Add(this.CB_PKMPerBattle);
             this.GB_Config.Controls.Add(this.CB_Lang);
-            this.GB_Config.Controls.Add(this.B_BReset);
-            this.GB_Config.Controls.Add(this.B_TReset);
             this.GB_Config.Controls.Add(this.CHK_Update);
             this.GB_Config.Location = new System.Drawing.Point(417, 12);
             this.GB_Config.Name = "GB_Config";
@@ -729,6 +737,27 @@
             this.GB_Config.TabIndex = 4;
             this.GB_Config.TabStop = false;
             this.GB_Config.Text = "Config";
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(7, 69);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 23);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Gen:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(53, 72);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(39, 20);
+            this.numericUpDown1.TabIndex = 31;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
             // 
             // B_View
             // 
@@ -830,30 +859,33 @@
             this.CB_Lang.TabIndex = 13;
             this.CB_Lang.SelectedIndexChanged += new System.EventHandler(this.changeLanguage);
             // 
-            // B_BReset
+            // mnu_ResetClear
             // 
-            this.B_BReset.Location = new System.Drawing.Point(6, 71);
-            this.B_BReset.Name = "B_BReset";
-            this.B_BReset.Size = new System.Drawing.Size(75, 23);
-            this.B_BReset.TabIndex = 3;
-            this.B_BReset.Text = "Reset Bot";
-            this.B_BReset.UseVisualStyleBackColor = true;
-            this.B_BReset.Click += new System.EventHandler(this.resetTeam);
+            this.mnu_ResetClear.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnu_Reset,
+            this.mnu_Clear});
+            this.mnu_ResetClear.Name = "mnu_TopBot";
+            this.mnu_ResetClear.Size = new System.Drawing.Size(153, 70);
             // 
-            // B_TReset
+            // mnu_Reset
             // 
-            this.B_TReset.Location = new System.Drawing.Point(6, 42);
-            this.B_TReset.Name = "B_TReset";
-            this.B_TReset.Size = new System.Drawing.Size(75, 23);
-            this.B_TReset.TabIndex = 2;
-            this.B_TReset.Text = "Reset Top";
-            this.B_TReset.UseVisualStyleBackColor = true;
-            this.B_TReset.Click += new System.EventHandler(this.resetTeam);
+            this.mnu_Reset.Name = "mnu_Reset";
+            this.mnu_Reset.Size = new System.Drawing.Size(152, 22);
+            this.mnu_Reset.Text = "Reset";
+            this.mnu_Reset.Click += new System.EventHandler(this.clickMenu);
+            // 
+            // mnu_Clear
+            // 
+            this.mnu_Clear.Name = "mnu_Clear";
+            this.mnu_Clear.Size = new System.Drawing.Size(152, 22);
+            this.mnu_Clear.Text = "Clear";
+            this.mnu_Clear.Click += new System.EventHandler(this.clickMenu);
             // 
             // GB_Bot
             // 
             this.GB_Bot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GB_Bot.ContextMenuStrip = this.mnu_ResetClear;
             this.GB_Bot.Controls.Add(this.CB_BStatus6);
             this.GB_Bot.Controls.Add(this.CHK_BX6);
             this.GB_Bot.Controls.Add(this.CHK_BU6);
@@ -1586,11 +1618,21 @@
             this.PB_T1.TabIndex = 4;
             this.PB_T1.TabStop = false;
             // 
+            // L_Shortcuts
+            // 
+            this.L_Shortcuts.AutoSize = true;
+            this.L_Shortcuts.Location = new System.Drawing.Point(415, 328);
+            this.L_Shortcuts.Name = "L_Shortcuts";
+            this.L_Shortcuts.Size = new System.Drawing.Size(209, 26);
+            this.L_Shortcuts.TabIndex = 24;
+            this.L_Shortcuts.Text = "Shortcuts:\r\nRight click Team GroupBox to Clear/Reset";
+            // 
             // ControlPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(744, 436);
+            this.Controls.Add(this.L_Shortcuts);
             this.Controls.Add(this.L_TScore);
             this.Controls.Add(this.L_BScore);
             this.Controls.Add(this.L_BTrainer);
@@ -1623,7 +1665,9 @@
             this.GB_Top.PerformLayout();
             this.GB_Config.ResumeLayout(false);
             this.GB_Config.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_PCT)).EndInit();
+            this.mnu_ResetClear.ResumeLayout(false);
             this.GB_Bot.ResumeLayout(false);
             this.GB_Bot.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PB_F2)).EndInit();
@@ -1661,8 +1705,6 @@
         private System.Windows.Forms.Label L_T3;
         private System.Windows.Forms.Label L_T2;
         private System.Windows.Forms.Label L_T1;
-        private System.Windows.Forms.Button B_BReset;
-        private System.Windows.Forms.Button B_TReset;
         private System.Windows.Forms.GroupBox GB_Bot;
         private System.Windows.Forms.Label L_B6;
         private System.Windows.Forms.Label L_B5;
@@ -1751,6 +1793,12 @@
         private System.Windows.Forms.NumericUpDown NUD_PCT;
         private System.Windows.Forms.Label L_PCT;
         private System.Windows.Forms.Button B_View;
+        private System.Windows.Forms.ContextMenuStrip mnu_ResetClear;
+        private System.Windows.Forms.ToolStripMenuItem mnu_Reset;
+        private System.Windows.Forms.ToolStripMenuItem mnu_Clear;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label L_Shortcuts;
     }
 }
 

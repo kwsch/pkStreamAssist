@@ -69,27 +69,44 @@ namespace pkStreamAssist
         private List<Util.cbItem> SpeciesDataSource;
         private string curlanguage = "en";
 
-        private void resetTeam(object sender, EventArgs e)
+        private void clickMenu(object sender, EventArgs e)
         {
-            bool top = sender == B_TReset;
-            bool softclear = ModifierKeys == Keys.Control;
+            var parent = (sender as ToolStripItem)?.GetCurrentParent();
+            bool top = (parent as ContextMenuStrip)?.SourceControl == GB_Top;
+            bool soft = sender == mnu_Reset; // don't clear species
+
+            resetTeam(top, soft);
+        }
+        private void resetTeam(bool top, bool soft)
+        {
+            if (top)
+                resetTeam(soft, TB_TTrainer, TSpecies, TForms, TUsed, TFNT, TStatus);
+            else
+                resetTeam(soft, TB_BTrainer, BSpecies, BForms, BUsed, BFNT, BStatus);
+            
+            TRCount[top ? 0 : 1].Text = "";
+        }
+        private void resetTeam(bool soft, TextBox Trainer, ComboBox[] Species, ComboBox[] Formes, CheckBox[] Used, CheckBox[] Faint, ComboBox[] Status)
+        {
             resetting = true;
 
-            if (!softclear)
-            foreach (var c in top ? TSpecies : BSpecies)
-                c.SelectedIndex = 0;
-            foreach (var c in top ? TForms : BForms)
-                c.SelectedIndex = 0;
-            foreach (var c in top ? TUsed : BUsed)
-                c.Checked = false;
-            foreach (var c in top ? TFNT : BFNT)
-                c.Checked = false;
-            foreach (var c in top ? TStatus : BStatus)
-                c.SelectedIndex = 0;
-            if (!softclear)
-                (top ? TB_TTrainer : TB_BTrainer).Text = "";
+            if (!soft)
+                Trainer.Text = "";
+            for (int i = 0; i < 6; i++)
+            {
+                if (!soft)
+                    Species[i].SelectedIndex = 0;
+                int species = Util.getIndex(Species[i]);
+
+                if (Legal.getIsBattleForm(species))
+                    Formes[i].SelectedIndex = 0;
+
+                Used[i].Checked = false;
+                Faint[i].Checked = false;
+                Status[i].SelectedIndex = 0;
+            }
+
             resetting = false;
-            TRCount[top ? 0 : 1].Text = "";
         }
         private void validateComboBox(object sender, EventArgs e)
         {
@@ -120,8 +137,8 @@ namespace pkStreamAssist
                 c.DataSource = new BindingSource(SpeciesDataSource, null);
             
             // Update Fields
-            resetTeam(B_TReset, null);
-            resetTeam(B_BReset, null);
+            resetTeam(soft: false, top: true);
+            resetTeam(soft: false, top: false);
         }
         private void changeUpdate(object sender, EventArgs e)
         {
@@ -181,7 +198,7 @@ namespace pkStreamAssist
             bool top = TSpecies.Contains(sender as ComboBox);
             int index = Array.IndexOf(top ? TSpecies : BSpecies, sender as ComboBox);
             int species = Util.getIndex((top ? TSpecies : BSpecies)[index]);
-            (top ? TForms : BForms)[index].DataSource = PKX.getFormList(species, types, forms, gendersymbols).ToList();
+            (top ? TForms : BForms)[index].DataSource = PKX.getFormList(species, types, forms, gendersymbols, 7).ToList();
             updateControls(index, top);
             updatePB(Array.IndexOf(top ? TSpecies : BSpecies, sender as ComboBox), top);
         }
