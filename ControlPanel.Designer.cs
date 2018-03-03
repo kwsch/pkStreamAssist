@@ -31,6 +31,15 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlPanel));
             this.GB_Top = new System.Windows.Forms.GroupBox();
+            this.mnu_ResetClear = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnu_Reset = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_Clear = new System.Windows.Forms.ToolStripMenuItem();
+            this.CHK_Shiny6 = new System.Windows.Forms.CheckBox();
+            this.CHK_Shiny5 = new System.Windows.Forms.CheckBox();
+            this.CHK_Shiny4 = new System.Windows.Forms.CheckBox();
+            this.CHK_Shiny3 = new System.Windows.Forms.CheckBox();
+            this.CHK_Shiny2 = new System.Windows.Forms.CheckBox();
+            this.CHK_Shiny1 = new System.Windows.Forms.CheckBox();
             this.CB_TStatus6 = new System.Windows.Forms.ComboBox();
             this.CHK_TX6 = new System.Windows.Forms.CheckBox();
             this.CHK_TU6 = new System.Windows.Forms.CheckBox();
@@ -79,10 +88,13 @@
             this.L_PKMPerBattle = new System.Windows.Forms.Label();
             this.CB_PKMPerBattle = new System.Windows.Forms.ComboBox();
             this.CB_Lang = new System.Windows.Forms.ComboBox();
-            this.mnu_ResetClear = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnu_Reset = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnu_Clear = new System.Windows.Forms.ToolStripMenuItem();
             this.GB_Bot = new System.Windows.Forms.GroupBox();
+            this.CHK_ShinyB6 = new System.Windows.Forms.CheckBox();
+            this.CHK_ShinyB5 = new System.Windows.Forms.CheckBox();
+            this.CHK_ShinyB4 = new System.Windows.Forms.CheckBox();
+            this.CHK_ShinyB3 = new System.Windows.Forms.CheckBox();
+            this.CHK_ShinyB2 = new System.Windows.Forms.CheckBox();
+            this.CHK_ShinyB1 = new System.Windows.Forms.CheckBox();
             this.CB_BStatus6 = new System.Windows.Forms.ComboBox();
             this.CHK_BX6 = new System.Windows.Forms.CheckBox();
             this.CHK_BU6 = new System.Windows.Forms.CheckBox();
@@ -140,10 +152,10 @@
             this.PB_T1 = new System.Windows.Forms.PictureBox();
             this.L_Shortcuts = new System.Windows.Forms.Label();
             this.GB_Top.SuspendLayout();
+            this.mnu_ResetClear.SuspendLayout();
             this.GB_Config.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_PCT)).BeginInit();
-            this.mnu_ResetClear.SuspendLayout();
             this.GB_Bot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PB_F2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PB_B6)).BeginInit();
@@ -165,6 +177,12 @@
             this.GB_Top.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GB_Top.ContextMenuStrip = this.mnu_ResetClear;
+            this.GB_Top.Controls.Add(this.CHK_Shiny6);
+            this.GB_Top.Controls.Add(this.CHK_Shiny5);
+            this.GB_Top.Controls.Add(this.CHK_Shiny4);
+            this.GB_Top.Controls.Add(this.CHK_Shiny3);
+            this.GB_Top.Controls.Add(this.CHK_Shiny2);
+            this.GB_Top.Controls.Add(this.CHK_Shiny1);
             this.GB_Top.Controls.Add(this.CB_TStatus6);
             this.GB_Top.Controls.Add(this.CHK_TX6);
             this.GB_Top.Controls.Add(this.CHK_TU6);
@@ -203,15 +221,108 @@
             this.GB_Top.Controls.Add(this.CB_TSpecies1);
             this.GB_Top.Location = new System.Drawing.Point(12, 12);
             this.GB_Top.Name = "GB_Top";
-            this.GB_Top.Size = new System.Drawing.Size(397, 205);
+            this.GB_Top.Size = new System.Drawing.Size(496, 205);
             this.GB_Top.TabIndex = 0;
             this.GB_Top.TabStop = false;
             this.GB_Top.Text = "Top";
             // 
+            // mnu_ResetClear
+            // 
+            this.mnu_ResetClear.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnu_Reset,
+            this.mnu_Clear});
+            this.mnu_ResetClear.Name = "mnu_TopBot";
+            this.mnu_ResetClear.Size = new System.Drawing.Size(103, 48);
+            // 
+            // mnu_Reset
+            // 
+            this.mnu_Reset.Name = "mnu_Reset";
+            this.mnu_Reset.Size = new System.Drawing.Size(102, 22);
+            this.mnu_Reset.Text = "Reset";
+            this.mnu_Reset.Click += new System.EventHandler(this.clickMenu);
+            // 
+            // mnu_Clear
+            // 
+            this.mnu_Clear.Name = "mnu_Clear";
+            this.mnu_Clear.Size = new System.Drawing.Size(102, 22);
+            this.mnu_Clear.Text = "Clear";
+            this.mnu_Clear.Click += new System.EventHandler(this.clickMenu);
+            // 
+            // CHK_Shiny6
+            // 
+            this.CHK_Shiny6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_Shiny6.AutoSize = true;
+            this.CHK_Shiny6.Location = new System.Drawing.Point(222, 172);
+            this.CHK_Shiny6.Name = "CHK_Shiny6";
+            this.CHK_Shiny6.Size = new System.Drawing.Size(52, 17);
+            this.CHK_Shiny6.TabIndex = 41;
+            this.CHK_Shiny6.Text = "Shiny";
+            this.CHK_Shiny6.UseVisualStyleBackColor = true;
+            this.CHK_Shiny6.CheckedChanged += new System.EventHandler(this.updateShiny);
+            // 
+            // CHK_Shiny5
+            // 
+            this.CHK_Shiny5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_Shiny5.AutoSize = true;
+            this.CHK_Shiny5.Location = new System.Drawing.Point(222, 145);
+            this.CHK_Shiny5.Name = "CHK_Shiny5";
+            this.CHK_Shiny5.Size = new System.Drawing.Size(52, 17);
+            this.CHK_Shiny5.TabIndex = 40;
+            this.CHK_Shiny5.Text = "Shiny";
+            this.CHK_Shiny5.UseVisualStyleBackColor = true;
+            this.CHK_Shiny5.CheckedChanged += new System.EventHandler(this.updateShiny);
+            // 
+            // CHK_Shiny4
+            // 
+            this.CHK_Shiny4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_Shiny4.AutoSize = true;
+            this.CHK_Shiny4.Location = new System.Drawing.Point(222, 110);
+            this.CHK_Shiny4.Name = "CHK_Shiny4";
+            this.CHK_Shiny4.Size = new System.Drawing.Size(52, 17);
+            this.CHK_Shiny4.TabIndex = 39;
+            this.CHK_Shiny4.Text = "Shiny";
+            this.CHK_Shiny4.UseVisualStyleBackColor = true;
+            this.CHK_Shiny4.CheckedChanged += new System.EventHandler(this.updateShiny);
+            // 
+            // CHK_Shiny3
+            // 
+            this.CHK_Shiny3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_Shiny3.AutoSize = true;
+            this.CHK_Shiny3.Location = new System.Drawing.Point(222, 83);
+            this.CHK_Shiny3.Name = "CHK_Shiny3";
+            this.CHK_Shiny3.Size = new System.Drawing.Size(52, 17);
+            this.CHK_Shiny3.TabIndex = 38;
+            this.CHK_Shiny3.Text = "Shiny";
+            this.CHK_Shiny3.UseVisualStyleBackColor = true;
+            this.CHK_Shiny3.CheckedChanged += new System.EventHandler(this.updateShiny);
+            // 
+            // CHK_Shiny2
+            // 
+            this.CHK_Shiny2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_Shiny2.AutoSize = true;
+            this.CHK_Shiny2.Location = new System.Drawing.Point(222, 48);
+            this.CHK_Shiny2.Name = "CHK_Shiny2";
+            this.CHK_Shiny2.Size = new System.Drawing.Size(52, 17);
+            this.CHK_Shiny2.TabIndex = 37;
+            this.CHK_Shiny2.Text = "Shiny";
+            this.CHK_Shiny2.UseVisualStyleBackColor = true;
+            this.CHK_Shiny2.CheckedChanged += new System.EventHandler(this.updateShiny);
+            // 
+            // CHK_Shiny1
+            // 
+            this.CHK_Shiny1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_Shiny1.AutoSize = true;
+            this.CHK_Shiny1.Location = new System.Drawing.Point(222, 21);
+            this.CHK_Shiny1.Name = "CHK_Shiny1";
+            this.CHK_Shiny1.Size = new System.Drawing.Size(52, 17);
+            this.CHK_Shiny1.TabIndex = 36;
+            this.CHK_Shiny1.Text = "Shiny";
+            this.CHK_Shiny1.UseVisualStyleBackColor = true;
+            this.CHK_Shiny1.CheckedChanged += new System.EventHandler(this.updateShiny);
+            // 
             // CB_TStatus6
             // 
-            this.CB_TStatus6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_TStatus6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_TStatus6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_TStatus6.Enabled = false;
             this.CB_TStatus6.FormattingEnabled = true;
@@ -223,19 +334,18 @@
             "BRN",
             "PSN",
             "TOX"});
-            this.CB_TStatus6.Location = new System.Drawing.Point(333, 170);
+            this.CB_TStatus6.Location = new System.Drawing.Point(402, 170);
             this.CB_TStatus6.Name = "CB_TStatus6";
-            this.CB_TStatus6.Size = new System.Drawing.Size(58, 21);
+            this.CB_TStatus6.Size = new System.Drawing.Size(88, 21);
             this.CB_TStatus6.TabIndex = 29;
             this.CB_TStatus6.SelectedIndexChanged += new System.EventHandler(this.updateStatus);
             // 
             // CHK_TX6
             // 
-            this.CHK_TX6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_TX6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_TX6.AutoSize = true;
             this.CHK_TX6.Enabled = false;
-            this.CHK_TX6.Location = new System.Drawing.Point(280, 172);
+            this.CHK_TX6.Location = new System.Drawing.Point(349, 172);
             this.CHK_TX6.Name = "CHK_TX6";
             this.CHK_TX6.Size = new System.Drawing.Size(47, 17);
             this.CHK_TX6.TabIndex = 23;
@@ -245,11 +355,10 @@
             // 
             // CHK_TU6
             // 
-            this.CHK_TU6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_TU6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_TU6.AutoSize = true;
             this.CHK_TU6.Enabled = false;
-            this.CHK_TU6.Location = new System.Drawing.Point(223, 172);
+            this.CHK_TU6.Location = new System.Drawing.Point(292, 172);
             this.CHK_TU6.Name = "CHK_TU6";
             this.CHK_TU6.Size = new System.Drawing.Size(51, 17);
             this.CHK_TU6.TabIndex = 17;
@@ -259,8 +368,6 @@
             // 
             // CB_TForm6
             // 
-            this.CB_TForm6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_TForm6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_TForm6.Enabled = false;
             this.CB_TForm6.FormattingEnabled = true;
@@ -272,8 +379,7 @@
             // 
             // CB_TStatus5
             // 
-            this.CB_TStatus5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_TStatus5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_TStatus5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_TStatus5.Enabled = false;
             this.CB_TStatus5.FormattingEnabled = true;
@@ -285,19 +391,18 @@
             "BRN",
             "PSN",
             "TOX"});
-            this.CB_TStatus5.Location = new System.Drawing.Point(333, 143);
+            this.CB_TStatus5.Location = new System.Drawing.Point(402, 143);
             this.CB_TStatus5.Name = "CB_TStatus5";
-            this.CB_TStatus5.Size = new System.Drawing.Size(58, 21);
+            this.CB_TStatus5.Size = new System.Drawing.Size(88, 21);
             this.CB_TStatus5.TabIndex = 28;
             this.CB_TStatus5.SelectedIndexChanged += new System.EventHandler(this.updateStatus);
             // 
             // CHK_TX5
             // 
-            this.CHK_TX5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_TX5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_TX5.AutoSize = true;
             this.CHK_TX5.Enabled = false;
-            this.CHK_TX5.Location = new System.Drawing.Point(280, 145);
+            this.CHK_TX5.Location = new System.Drawing.Point(349, 145);
             this.CHK_TX5.Name = "CHK_TX5";
             this.CHK_TX5.Size = new System.Drawing.Size(47, 17);
             this.CHK_TX5.TabIndex = 22;
@@ -307,11 +412,10 @@
             // 
             // CHK_TU5
             // 
-            this.CHK_TU5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_TU5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_TU5.AutoSize = true;
             this.CHK_TU5.Enabled = false;
-            this.CHK_TU5.Location = new System.Drawing.Point(223, 145);
+            this.CHK_TU5.Location = new System.Drawing.Point(292, 145);
             this.CHK_TU5.Name = "CHK_TU5";
             this.CHK_TU5.Size = new System.Drawing.Size(51, 17);
             this.CHK_TU5.TabIndex = 16;
@@ -321,8 +425,6 @@
             // 
             // CB_TForm5
             // 
-            this.CB_TForm5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_TForm5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_TForm5.Enabled = false;
             this.CB_TForm5.FormattingEnabled = true;
@@ -334,8 +436,7 @@
             // 
             // CB_TStatus4
             // 
-            this.CB_TStatus4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_TStatus4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_TStatus4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_TStatus4.Enabled = false;
             this.CB_TStatus4.FormattingEnabled = true;
@@ -347,19 +448,18 @@
             "BRN",
             "PSN",
             "TOX"});
-            this.CB_TStatus4.Location = new System.Drawing.Point(333, 108);
+            this.CB_TStatus4.Location = new System.Drawing.Point(402, 108);
             this.CB_TStatus4.Name = "CB_TStatus4";
-            this.CB_TStatus4.Size = new System.Drawing.Size(58, 21);
+            this.CB_TStatus4.Size = new System.Drawing.Size(88, 21);
             this.CB_TStatus4.TabIndex = 27;
             this.CB_TStatus4.SelectedIndexChanged += new System.EventHandler(this.updateStatus);
             // 
             // CHK_TX4
             // 
-            this.CHK_TX4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_TX4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_TX4.AutoSize = true;
             this.CHK_TX4.Enabled = false;
-            this.CHK_TX4.Location = new System.Drawing.Point(280, 110);
+            this.CHK_TX4.Location = new System.Drawing.Point(349, 110);
             this.CHK_TX4.Name = "CHK_TX4";
             this.CHK_TX4.Size = new System.Drawing.Size(47, 17);
             this.CHK_TX4.TabIndex = 21;
@@ -369,11 +469,10 @@
             // 
             // CHK_TU4
             // 
-            this.CHK_TU4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_TU4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_TU4.AutoSize = true;
             this.CHK_TU4.Enabled = false;
-            this.CHK_TU4.Location = new System.Drawing.Point(223, 110);
+            this.CHK_TU4.Location = new System.Drawing.Point(292, 110);
             this.CHK_TU4.Name = "CHK_TU4";
             this.CHK_TU4.Size = new System.Drawing.Size(51, 17);
             this.CHK_TU4.TabIndex = 15;
@@ -383,8 +482,6 @@
             // 
             // CB_TForm4
             // 
-            this.CB_TForm4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_TForm4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_TForm4.Enabled = false;
             this.CB_TForm4.FormattingEnabled = true;
@@ -396,8 +493,7 @@
             // 
             // CB_TStatus3
             // 
-            this.CB_TStatus3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_TStatus3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_TStatus3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_TStatus3.Enabled = false;
             this.CB_TStatus3.FormattingEnabled = true;
@@ -409,19 +505,18 @@
             "BRN",
             "PSN",
             "TOX"});
-            this.CB_TStatus3.Location = new System.Drawing.Point(333, 81);
+            this.CB_TStatus3.Location = new System.Drawing.Point(402, 81);
             this.CB_TStatus3.Name = "CB_TStatus3";
-            this.CB_TStatus3.Size = new System.Drawing.Size(58, 21);
+            this.CB_TStatus3.Size = new System.Drawing.Size(88, 21);
             this.CB_TStatus3.TabIndex = 26;
             this.CB_TStatus3.SelectedIndexChanged += new System.EventHandler(this.updateStatus);
             // 
             // CHK_TX3
             // 
-            this.CHK_TX3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_TX3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_TX3.AutoSize = true;
             this.CHK_TX3.Enabled = false;
-            this.CHK_TX3.Location = new System.Drawing.Point(280, 83);
+            this.CHK_TX3.Location = new System.Drawing.Point(349, 83);
             this.CHK_TX3.Name = "CHK_TX3";
             this.CHK_TX3.Size = new System.Drawing.Size(47, 17);
             this.CHK_TX3.TabIndex = 29;
@@ -431,11 +526,10 @@
             // 
             // CHK_TU3
             // 
-            this.CHK_TU3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_TU3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_TU3.AutoSize = true;
             this.CHK_TU3.Enabled = false;
-            this.CHK_TU3.Location = new System.Drawing.Point(223, 83);
+            this.CHK_TU3.Location = new System.Drawing.Point(292, 83);
             this.CHK_TU3.Name = "CHK_TU3";
             this.CHK_TU3.Size = new System.Drawing.Size(51, 17);
             this.CHK_TU3.TabIndex = 14;
@@ -445,8 +539,6 @@
             // 
             // CB_TForm3
             // 
-            this.CB_TForm3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_TForm3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_TForm3.Enabled = false;
             this.CB_TForm3.FormattingEnabled = true;
@@ -458,8 +550,7 @@
             // 
             // CB_TStatus2
             // 
-            this.CB_TStatus2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_TStatus2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_TStatus2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_TStatus2.Enabled = false;
             this.CB_TStatus2.FormattingEnabled = true;
@@ -471,19 +562,18 @@
             "BRN",
             "PSN",
             "TOX"});
-            this.CB_TStatus2.Location = new System.Drawing.Point(333, 46);
+            this.CB_TStatus2.Location = new System.Drawing.Point(402, 46);
             this.CB_TStatus2.Name = "CB_TStatus2";
-            this.CB_TStatus2.Size = new System.Drawing.Size(58, 21);
+            this.CB_TStatus2.Size = new System.Drawing.Size(88, 21);
             this.CB_TStatus2.TabIndex = 25;
             this.CB_TStatus2.SelectedIndexChanged += new System.EventHandler(this.updateStatus);
             // 
             // CHK_TX2
             // 
-            this.CHK_TX2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_TX2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_TX2.AutoSize = true;
             this.CHK_TX2.Enabled = false;
-            this.CHK_TX2.Location = new System.Drawing.Point(280, 48);
+            this.CHK_TX2.Location = new System.Drawing.Point(349, 48);
             this.CHK_TX2.Name = "CHK_TX2";
             this.CHK_TX2.Size = new System.Drawing.Size(47, 17);
             this.CHK_TX2.TabIndex = 19;
@@ -493,11 +583,10 @@
             // 
             // CHK_TU2
             // 
-            this.CHK_TU2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_TU2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_TU2.AutoSize = true;
             this.CHK_TU2.Enabled = false;
-            this.CHK_TU2.Location = new System.Drawing.Point(223, 48);
+            this.CHK_TU2.Location = new System.Drawing.Point(292, 48);
             this.CHK_TU2.Name = "CHK_TU2";
             this.CHK_TU2.Size = new System.Drawing.Size(51, 17);
             this.CHK_TU2.TabIndex = 13;
@@ -507,8 +596,6 @@
             // 
             // CB_TForm2
             // 
-            this.CB_TForm2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_TForm2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_TForm2.Enabled = false;
             this.CB_TForm2.FormattingEnabled = true;
@@ -520,8 +607,7 @@
             // 
             // CB_TStatus1
             // 
-            this.CB_TStatus1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_TStatus1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_TStatus1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_TStatus1.Enabled = false;
             this.CB_TStatus1.FormattingEnabled = true;
@@ -533,19 +619,18 @@
             "BRN",
             "PSN",
             "TOX"});
-            this.CB_TStatus1.Location = new System.Drawing.Point(333, 19);
+            this.CB_TStatus1.Location = new System.Drawing.Point(402, 19);
             this.CB_TStatus1.Name = "CB_TStatus1";
-            this.CB_TStatus1.Size = new System.Drawing.Size(58, 21);
+            this.CB_TStatus1.Size = new System.Drawing.Size(88, 21);
             this.CB_TStatus1.TabIndex = 24;
             this.CB_TStatus1.SelectedIndexChanged += new System.EventHandler(this.updateStatus);
             // 
             // CHK_TX1
             // 
-            this.CHK_TX1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_TX1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_TX1.AutoSize = true;
             this.CHK_TX1.Enabled = false;
-            this.CHK_TX1.Location = new System.Drawing.Point(280, 21);
+            this.CHK_TX1.Location = new System.Drawing.Point(349, 21);
             this.CHK_TX1.Name = "CHK_TX1";
             this.CHK_TX1.Size = new System.Drawing.Size(47, 17);
             this.CHK_TX1.TabIndex = 18;
@@ -555,11 +640,10 @@
             // 
             // CHK_TU1
             // 
-            this.CHK_TU1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_TU1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_TU1.AutoSize = true;
             this.CHK_TU1.Enabled = false;
-            this.CHK_TU1.Location = new System.Drawing.Point(223, 21);
+            this.CHK_TU1.Location = new System.Drawing.Point(292, 21);
             this.CHK_TU1.Name = "CHK_TU1";
             this.CHK_TU1.Size = new System.Drawing.Size(51, 17);
             this.CHK_TU1.TabIndex = 12;
@@ -569,8 +653,6 @@
             // 
             // CB_TForm1
             // 
-            this.CB_TForm1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_TForm1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_TForm1.Enabled = false;
             this.CB_TForm1.FormattingEnabled = true;
@@ -731,7 +813,7 @@
             this.GB_Config.Controls.Add(this.CB_PKMPerBattle);
             this.GB_Config.Controls.Add(this.CB_Lang);
             this.GB_Config.Controls.Add(this.CHK_Update);
-            this.GB_Config.Location = new System.Drawing.Point(417, 12);
+            this.GB_Config.Location = new System.Drawing.Point(516, 12);
             this.GB_Config.Name = "GB_Config";
             this.GB_Config.Size = new System.Drawing.Size(316, 102);
             this.GB_Config.TabIndex = 4;
@@ -859,33 +941,17 @@
             this.CB_Lang.TabIndex = 13;
             this.CB_Lang.SelectedIndexChanged += new System.EventHandler(this.changeLanguage);
             // 
-            // mnu_ResetClear
-            // 
-            this.mnu_ResetClear.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnu_Reset,
-            this.mnu_Clear});
-            this.mnu_ResetClear.Name = "mnu_TopBot";
-            this.mnu_ResetClear.Size = new System.Drawing.Size(153, 70);
-            // 
-            // mnu_Reset
-            // 
-            this.mnu_Reset.Name = "mnu_Reset";
-            this.mnu_Reset.Size = new System.Drawing.Size(152, 22);
-            this.mnu_Reset.Text = "Reset";
-            this.mnu_Reset.Click += new System.EventHandler(this.clickMenu);
-            // 
-            // mnu_Clear
-            // 
-            this.mnu_Clear.Name = "mnu_Clear";
-            this.mnu_Clear.Size = new System.Drawing.Size(152, 22);
-            this.mnu_Clear.Text = "Clear";
-            this.mnu_Clear.Click += new System.EventHandler(this.clickMenu);
-            // 
             // GB_Bot
             // 
             this.GB_Bot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GB_Bot.ContextMenuStrip = this.mnu_ResetClear;
+            this.GB_Bot.Controls.Add(this.CHK_ShinyB6);
+            this.GB_Bot.Controls.Add(this.CHK_ShinyB5);
+            this.GB_Bot.Controls.Add(this.CHK_ShinyB4);
+            this.GB_Bot.Controls.Add(this.CHK_ShinyB3);
+            this.GB_Bot.Controls.Add(this.CHK_ShinyB2);
+            this.GB_Bot.Controls.Add(this.CHK_ShinyB1);
             this.GB_Bot.Controls.Add(this.CB_BStatus6);
             this.GB_Bot.Controls.Add(this.CHK_BX6);
             this.GB_Bot.Controls.Add(this.CHK_BU6);
@@ -924,15 +990,86 @@
             this.GB_Bot.Controls.Add(this.CB_BSpecies1);
             this.GB_Bot.Location = new System.Drawing.Point(12, 223);
             this.GB_Bot.Name = "GB_Bot";
-            this.GB_Bot.Size = new System.Drawing.Size(397, 205);
+            this.GB_Bot.Size = new System.Drawing.Size(496, 205);
             this.GB_Bot.TabIndex = 1;
             this.GB_Bot.TabStop = false;
             this.GB_Bot.Text = "Bot";
             // 
+            // CHK_ShinyB6
+            // 
+            this.CHK_ShinyB6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_ShinyB6.AutoSize = true;
+            this.CHK_ShinyB6.Location = new System.Drawing.Point(222, 172);
+            this.CHK_ShinyB6.Name = "CHK_ShinyB6";
+            this.CHK_ShinyB6.Size = new System.Drawing.Size(52, 17);
+            this.CHK_ShinyB6.TabIndex = 47;
+            this.CHK_ShinyB6.Text = "Shiny";
+            this.CHK_ShinyB6.UseVisualStyleBackColor = true;
+            this.CHK_ShinyB6.CheckedChanged += new System.EventHandler(this.updateShiny);
+            // 
+            // CHK_ShinyB5
+            // 
+            this.CHK_ShinyB5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_ShinyB5.AutoSize = true;
+            this.CHK_ShinyB5.Location = new System.Drawing.Point(222, 145);
+            this.CHK_ShinyB5.Name = "CHK_ShinyB5";
+            this.CHK_ShinyB5.Size = new System.Drawing.Size(52, 17);
+            this.CHK_ShinyB5.TabIndex = 46;
+            this.CHK_ShinyB5.Text = "Shiny";
+            this.CHK_ShinyB5.UseVisualStyleBackColor = true;
+            this.CHK_ShinyB5.CheckedChanged += new System.EventHandler(this.updateShiny);
+            // 
+            // CHK_ShinyB4
+            // 
+            this.CHK_ShinyB4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_ShinyB4.AutoSize = true;
+            this.CHK_ShinyB4.Location = new System.Drawing.Point(222, 110);
+            this.CHK_ShinyB4.Name = "CHK_ShinyB4";
+            this.CHK_ShinyB4.Size = new System.Drawing.Size(52, 17);
+            this.CHK_ShinyB4.TabIndex = 45;
+            this.CHK_ShinyB4.Text = "Shiny";
+            this.CHK_ShinyB4.UseVisualStyleBackColor = true;
+            this.CHK_ShinyB4.CheckedChanged += new System.EventHandler(this.updateShiny);
+            // 
+            // CHK_ShinyB3
+            // 
+            this.CHK_ShinyB3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_ShinyB3.AutoSize = true;
+            this.CHK_ShinyB3.Location = new System.Drawing.Point(222, 83);
+            this.CHK_ShinyB3.Name = "CHK_ShinyB3";
+            this.CHK_ShinyB3.Size = new System.Drawing.Size(52, 17);
+            this.CHK_ShinyB3.TabIndex = 44;
+            this.CHK_ShinyB3.Text = "Shiny";
+            this.CHK_ShinyB3.UseVisualStyleBackColor = true;
+            this.CHK_ShinyB3.CheckedChanged += new System.EventHandler(this.updateShiny);
+            // 
+            // CHK_ShinyB2
+            // 
+            this.CHK_ShinyB2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_ShinyB2.AutoSize = true;
+            this.CHK_ShinyB2.Location = new System.Drawing.Point(222, 48);
+            this.CHK_ShinyB2.Name = "CHK_ShinyB2";
+            this.CHK_ShinyB2.Size = new System.Drawing.Size(52, 17);
+            this.CHK_ShinyB2.TabIndex = 43;
+            this.CHK_ShinyB2.Text = "Shiny";
+            this.CHK_ShinyB2.UseVisualStyleBackColor = true;
+            this.CHK_ShinyB2.CheckedChanged += new System.EventHandler(this.updateShiny);
+            // 
+            // CHK_ShinyB1
+            // 
+            this.CHK_ShinyB1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_ShinyB1.AutoSize = true;
+            this.CHK_ShinyB1.Location = new System.Drawing.Point(222, 21);
+            this.CHK_ShinyB1.Name = "CHK_ShinyB1";
+            this.CHK_ShinyB1.Size = new System.Drawing.Size(52, 17);
+            this.CHK_ShinyB1.TabIndex = 42;
+            this.CHK_ShinyB1.Text = "Shiny";
+            this.CHK_ShinyB1.UseVisualStyleBackColor = true;
+            this.CHK_ShinyB1.CheckedChanged += new System.EventHandler(this.updateShiny);
+            // 
             // CB_BStatus6
             // 
-            this.CB_BStatus6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_BStatus6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_BStatus6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_BStatus6.Enabled = false;
             this.CB_BStatus6.FormattingEnabled = true;
@@ -944,19 +1081,18 @@
             "BRN",
             "PSN",
             "TOX"});
-            this.CB_BStatus6.Location = new System.Drawing.Point(333, 170);
+            this.CB_BStatus6.Location = new System.Drawing.Point(402, 170);
             this.CB_BStatus6.Name = "CB_BStatus6";
-            this.CB_BStatus6.Size = new System.Drawing.Size(58, 21);
+            this.CB_BStatus6.Size = new System.Drawing.Size(88, 21);
             this.CB_BStatus6.TabIndex = 29;
             this.CB_BStatus6.SelectedIndexChanged += new System.EventHandler(this.updateStatus);
             // 
             // CHK_BX6
             // 
-            this.CHK_BX6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_BX6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_BX6.AutoSize = true;
             this.CHK_BX6.Enabled = false;
-            this.CHK_BX6.Location = new System.Drawing.Point(280, 172);
+            this.CHK_BX6.Location = new System.Drawing.Point(349, 172);
             this.CHK_BX6.Name = "CHK_BX6";
             this.CHK_BX6.Size = new System.Drawing.Size(47, 17);
             this.CHK_BX6.TabIndex = 23;
@@ -966,11 +1102,10 @@
             // 
             // CHK_BU6
             // 
-            this.CHK_BU6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_BU6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_BU6.AutoSize = true;
             this.CHK_BU6.Enabled = false;
-            this.CHK_BU6.Location = new System.Drawing.Point(223, 172);
+            this.CHK_BU6.Location = new System.Drawing.Point(292, 172);
             this.CHK_BU6.Name = "CHK_BU6";
             this.CHK_BU6.Size = new System.Drawing.Size(51, 17);
             this.CHK_BU6.TabIndex = 17;
@@ -980,8 +1115,6 @@
             // 
             // CB_BForm6
             // 
-            this.CB_BForm6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_BForm6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_BForm6.Enabled = false;
             this.CB_BForm6.FormattingEnabled = true;
@@ -993,8 +1126,7 @@
             // 
             // CB_BStatus5
             // 
-            this.CB_BStatus5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_BStatus5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_BStatus5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_BStatus5.Enabled = false;
             this.CB_BStatus5.FormattingEnabled = true;
@@ -1006,19 +1138,18 @@
             "BRN",
             "PSN",
             "TOX"});
-            this.CB_BStatus5.Location = new System.Drawing.Point(333, 143);
+            this.CB_BStatus5.Location = new System.Drawing.Point(402, 143);
             this.CB_BStatus5.Name = "CB_BStatus5";
-            this.CB_BStatus5.Size = new System.Drawing.Size(58, 21);
+            this.CB_BStatus5.Size = new System.Drawing.Size(88, 21);
             this.CB_BStatus5.TabIndex = 28;
             this.CB_BStatus5.SelectedIndexChanged += new System.EventHandler(this.updateStatus);
             // 
             // CHK_BX5
             // 
-            this.CHK_BX5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_BX5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_BX5.AutoSize = true;
             this.CHK_BX5.Enabled = false;
-            this.CHK_BX5.Location = new System.Drawing.Point(280, 145);
+            this.CHK_BX5.Location = new System.Drawing.Point(349, 145);
             this.CHK_BX5.Name = "CHK_BX5";
             this.CHK_BX5.Size = new System.Drawing.Size(47, 17);
             this.CHK_BX5.TabIndex = 22;
@@ -1028,11 +1159,10 @@
             // 
             // CHK_BU5
             // 
-            this.CHK_BU5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_BU5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_BU5.AutoSize = true;
             this.CHK_BU5.Enabled = false;
-            this.CHK_BU5.Location = new System.Drawing.Point(223, 145);
+            this.CHK_BU5.Location = new System.Drawing.Point(292, 145);
             this.CHK_BU5.Name = "CHK_BU5";
             this.CHK_BU5.Size = new System.Drawing.Size(51, 17);
             this.CHK_BU5.TabIndex = 16;
@@ -1042,8 +1172,6 @@
             // 
             // CB_BForm5
             // 
-            this.CB_BForm5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_BForm5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_BForm5.Enabled = false;
             this.CB_BForm5.FormattingEnabled = true;
@@ -1055,8 +1183,7 @@
             // 
             // CB_BStatus4
             // 
-            this.CB_BStatus4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_BStatus4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_BStatus4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_BStatus4.Enabled = false;
             this.CB_BStatus4.FormattingEnabled = true;
@@ -1068,19 +1195,18 @@
             "BRN",
             "PSN",
             "TOX"});
-            this.CB_BStatus4.Location = new System.Drawing.Point(333, 108);
+            this.CB_BStatus4.Location = new System.Drawing.Point(402, 108);
             this.CB_BStatus4.Name = "CB_BStatus4";
-            this.CB_BStatus4.Size = new System.Drawing.Size(58, 21);
+            this.CB_BStatus4.Size = new System.Drawing.Size(88, 21);
             this.CB_BStatus4.TabIndex = 27;
             this.CB_BStatus4.SelectedIndexChanged += new System.EventHandler(this.updateStatus);
             // 
             // CHK_BX4
             // 
-            this.CHK_BX4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_BX4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_BX4.AutoSize = true;
             this.CHK_BX4.Enabled = false;
-            this.CHK_BX4.Location = new System.Drawing.Point(280, 110);
+            this.CHK_BX4.Location = new System.Drawing.Point(349, 110);
             this.CHK_BX4.Name = "CHK_BX4";
             this.CHK_BX4.Size = new System.Drawing.Size(47, 17);
             this.CHK_BX4.TabIndex = 21;
@@ -1090,11 +1216,10 @@
             // 
             // CHK_BU4
             // 
-            this.CHK_BU4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_BU4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_BU4.AutoSize = true;
             this.CHK_BU4.Enabled = false;
-            this.CHK_BU4.Location = new System.Drawing.Point(223, 110);
+            this.CHK_BU4.Location = new System.Drawing.Point(292, 110);
             this.CHK_BU4.Name = "CHK_BU4";
             this.CHK_BU4.Size = new System.Drawing.Size(51, 17);
             this.CHK_BU4.TabIndex = 15;
@@ -1104,8 +1229,6 @@
             // 
             // CB_BForm4
             // 
-            this.CB_BForm4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_BForm4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_BForm4.Enabled = false;
             this.CB_BForm4.FormattingEnabled = true;
@@ -1117,8 +1240,7 @@
             // 
             // CB_BStatus3
             // 
-            this.CB_BStatus3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_BStatus3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_BStatus3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_BStatus3.Enabled = false;
             this.CB_BStatus3.FormattingEnabled = true;
@@ -1130,19 +1252,18 @@
             "BRN",
             "PSN",
             "TOX"});
-            this.CB_BStatus3.Location = new System.Drawing.Point(333, 81);
+            this.CB_BStatus3.Location = new System.Drawing.Point(402, 81);
             this.CB_BStatus3.Name = "CB_BStatus3";
-            this.CB_BStatus3.Size = new System.Drawing.Size(58, 21);
+            this.CB_BStatus3.Size = new System.Drawing.Size(88, 21);
             this.CB_BStatus3.TabIndex = 26;
             this.CB_BStatus3.SelectedIndexChanged += new System.EventHandler(this.updateStatus);
             // 
             // CHK_BX3
             // 
-            this.CHK_BX3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_BX3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_BX3.AutoSize = true;
             this.CHK_BX3.Enabled = false;
-            this.CHK_BX3.Location = new System.Drawing.Point(280, 83);
+            this.CHK_BX3.Location = new System.Drawing.Point(349, 83);
             this.CHK_BX3.Name = "CHK_BX3";
             this.CHK_BX3.Size = new System.Drawing.Size(47, 17);
             this.CHK_BX3.TabIndex = 20;
@@ -1152,11 +1273,10 @@
             // 
             // CHK_BU3
             // 
-            this.CHK_BU3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_BU3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_BU3.AutoSize = true;
             this.CHK_BU3.Enabled = false;
-            this.CHK_BU3.Location = new System.Drawing.Point(223, 83);
+            this.CHK_BU3.Location = new System.Drawing.Point(292, 83);
             this.CHK_BU3.Name = "CHK_BU3";
             this.CHK_BU3.Size = new System.Drawing.Size(51, 17);
             this.CHK_BU3.TabIndex = 14;
@@ -1166,8 +1286,6 @@
             // 
             // CB_BForm3
             // 
-            this.CB_BForm3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_BForm3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_BForm3.Enabled = false;
             this.CB_BForm3.FormattingEnabled = true;
@@ -1179,8 +1297,7 @@
             // 
             // CB_BStatus2
             // 
-            this.CB_BStatus2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_BStatus2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_BStatus2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_BStatus2.Enabled = false;
             this.CB_BStatus2.FormattingEnabled = true;
@@ -1192,19 +1309,18 @@
             "BRN",
             "PSN",
             "TOX"});
-            this.CB_BStatus2.Location = new System.Drawing.Point(333, 46);
+            this.CB_BStatus2.Location = new System.Drawing.Point(402, 46);
             this.CB_BStatus2.Name = "CB_BStatus2";
-            this.CB_BStatus2.Size = new System.Drawing.Size(58, 21);
+            this.CB_BStatus2.Size = new System.Drawing.Size(88, 21);
             this.CB_BStatus2.TabIndex = 25;
             this.CB_BStatus2.SelectedIndexChanged += new System.EventHandler(this.updateStatus);
             // 
             // CHK_BX2
             // 
-            this.CHK_BX2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_BX2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_BX2.AutoSize = true;
             this.CHK_BX2.Enabled = false;
-            this.CHK_BX2.Location = new System.Drawing.Point(280, 48);
+            this.CHK_BX2.Location = new System.Drawing.Point(349, 48);
             this.CHK_BX2.Name = "CHK_BX2";
             this.CHK_BX2.Size = new System.Drawing.Size(47, 17);
             this.CHK_BX2.TabIndex = 19;
@@ -1214,11 +1330,10 @@
             // 
             // CHK_BU2
             // 
-            this.CHK_BU2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_BU2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_BU2.AutoSize = true;
             this.CHK_BU2.Enabled = false;
-            this.CHK_BU2.Location = new System.Drawing.Point(223, 48);
+            this.CHK_BU2.Location = new System.Drawing.Point(292, 48);
             this.CHK_BU2.Name = "CHK_BU2";
             this.CHK_BU2.Size = new System.Drawing.Size(51, 17);
             this.CHK_BU2.TabIndex = 13;
@@ -1228,8 +1343,6 @@
             // 
             // CB_BForm2
             // 
-            this.CB_BForm2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_BForm2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_BForm2.Enabled = false;
             this.CB_BForm2.FormattingEnabled = true;
@@ -1241,8 +1354,7 @@
             // 
             // CB_BStatus1
             // 
-            this.CB_BStatus1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CB_BStatus1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_BStatus1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_BStatus1.Enabled = false;
             this.CB_BStatus1.FormattingEnabled = true;
@@ -1254,19 +1366,18 @@
             "BRN",
             "PSN",
             "TOX"});
-            this.CB_BStatus1.Location = new System.Drawing.Point(333, 19);
+            this.CB_BStatus1.Location = new System.Drawing.Point(402, 19);
             this.CB_BStatus1.Name = "CB_BStatus1";
-            this.CB_BStatus1.Size = new System.Drawing.Size(58, 21);
+            this.CB_BStatus1.Size = new System.Drawing.Size(88, 21);
             this.CB_BStatus1.TabIndex = 24;
             this.CB_BStatus1.SelectedIndexChanged += new System.EventHandler(this.updateStatus);
             // 
             // CHK_BX1
             // 
-            this.CHK_BX1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_BX1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_BX1.AutoSize = true;
             this.CHK_BX1.Enabled = false;
-            this.CHK_BX1.Location = new System.Drawing.Point(280, 21);
+            this.CHK_BX1.Location = new System.Drawing.Point(349, 21);
             this.CHK_BX1.Name = "CHK_BX1";
             this.CHK_BX1.Size = new System.Drawing.Size(47, 17);
             this.CHK_BX1.TabIndex = 18;
@@ -1276,11 +1387,10 @@
             // 
             // CHK_BU1
             // 
-            this.CHK_BU1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CHK_BU1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CHK_BU1.AutoSize = true;
             this.CHK_BU1.Enabled = false;
-            this.CHK_BU1.Location = new System.Drawing.Point(223, 21);
+            this.CHK_BU1.Location = new System.Drawing.Point(292, 21);
             this.CHK_BU1.Name = "CHK_BU1";
             this.CHK_BU1.Size = new System.Drawing.Size(51, 17);
             this.CHK_BU1.TabIndex = 12;
@@ -1290,8 +1400,6 @@
             // 
             // CB_BForm1
             // 
-            this.CB_BForm1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CB_BForm1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CB_BForm1.Enabled = false;
             this.CB_BForm1.FormattingEnabled = true;
@@ -1430,7 +1538,7 @@
             // TB_BTrainer
             // 
             this.TB_BTrainer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TB_BTrainer.Location = new System.Drawing.Point(417, 271);
+            this.TB_BTrainer.Location = new System.Drawing.Point(516, 271);
             this.TB_BTrainer.Name = "TB_BTrainer";
             this.TB_BTrainer.Size = new System.Drawing.Size(100, 20);
             this.TB_BTrainer.TabIndex = 3;
@@ -1439,7 +1547,7 @@
             // TB_TTrainer
             // 
             this.TB_TTrainer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TB_TTrainer.Location = new System.Drawing.Point(417, 151);
+            this.TB_TTrainer.Location = new System.Drawing.Point(516, 151);
             this.TB_TTrainer.Name = "TB_TTrainer";
             this.TB_TTrainer.Size = new System.Drawing.Size(100, 20);
             this.TB_TTrainer.TabIndex = 2;
@@ -1449,7 +1557,7 @@
             // 
             this.L_TTrainer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.L_TTrainer.AutoSize = true;
-            this.L_TTrainer.Location = new System.Drawing.Point(414, 135);
+            this.L_TTrainer.Location = new System.Drawing.Point(513, 135);
             this.L_TTrainer.Name = "L_TTrainer";
             this.L_TTrainer.Size = new System.Drawing.Size(62, 13);
             this.L_TTrainer.TabIndex = 20;
@@ -1459,7 +1567,7 @@
             // 
             this.L_BTrainer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.L_BTrainer.AutoSize = true;
-            this.L_BTrainer.Location = new System.Drawing.Point(414, 294);
+            this.L_BTrainer.Location = new System.Drawing.Point(513, 294);
             this.L_BTrainer.Name = "L_BTrainer";
             this.L_BTrainer.Size = new System.Drawing.Size(59, 13);
             this.L_BTrainer.TabIndex = 21;
@@ -1469,7 +1577,7 @@
             // 
             this.L_BScore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.L_BScore.AutoSize = true;
-            this.L_BScore.Location = new System.Drawing.Point(523, 274);
+            this.L_BScore.Location = new System.Drawing.Point(622, 274);
             this.L_BScore.Name = "L_BScore";
             this.L_BScore.Size = new System.Drawing.Size(14, 13);
             this.L_BScore.TabIndex = 22;
@@ -1480,7 +1588,7 @@
             // 
             this.L_TScore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.L_TScore.AutoSize = true;
-            this.L_TScore.Location = new System.Drawing.Point(523, 154);
+            this.L_TScore.Location = new System.Drawing.Point(622, 154);
             this.L_TScore.Name = "L_TScore";
             this.L_TScore.Size = new System.Drawing.Size(14, 13);
             this.L_TScore.TabIndex = 23;
@@ -1491,7 +1599,7 @@
             // 
             this.PB_F2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PB_F2.Image = global::pkStreamAssist.Properties.Resources.nb;
-            this.PB_F2.Location = new System.Drawing.Point(635, 328);
+            this.PB_F2.Location = new System.Drawing.Point(734, 328);
             this.PB_F2.Name = "PB_F2";
             this.PB_F2.Size = new System.Drawing.Size(100, 100);
             this.PB_F2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1502,7 +1610,7 @@
             // 
             this.PB_B6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PB_B6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PB_B6.Location = new System.Drawing.Point(682, 223);
+            this.PB_B6.Location = new System.Drawing.Point(781, 223);
             this.PB_B6.Name = "PB_B6";
             this.PB_B6.Size = new System.Drawing.Size(52, 42);
             this.PB_B6.TabIndex = 15;
@@ -1512,7 +1620,7 @@
             // 
             this.PB_B5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PB_B5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PB_B5.Location = new System.Drawing.Point(629, 223);
+            this.PB_B5.Location = new System.Drawing.Point(728, 223);
             this.PB_B5.Name = "PB_B5";
             this.PB_B5.Size = new System.Drawing.Size(52, 42);
             this.PB_B5.TabIndex = 14;
@@ -1522,7 +1630,7 @@
             // 
             this.PB_B4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PB_B4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PB_B4.Location = new System.Drawing.Point(576, 223);
+            this.PB_B4.Location = new System.Drawing.Point(675, 223);
             this.PB_B4.Name = "PB_B4";
             this.PB_B4.Size = new System.Drawing.Size(52, 42);
             this.PB_B4.TabIndex = 13;
@@ -1532,7 +1640,7 @@
             // 
             this.PB_B3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PB_B3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PB_B3.Location = new System.Drawing.Point(523, 223);
+            this.PB_B3.Location = new System.Drawing.Point(622, 223);
             this.PB_B3.Name = "PB_B3";
             this.PB_B3.Size = new System.Drawing.Size(52, 42);
             this.PB_B3.TabIndex = 12;
@@ -1542,7 +1650,7 @@
             // 
             this.PB_B2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PB_B2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PB_B2.Location = new System.Drawing.Point(470, 223);
+            this.PB_B2.Location = new System.Drawing.Point(569, 223);
             this.PB_B2.Name = "PB_B2";
             this.PB_B2.Size = new System.Drawing.Size(52, 42);
             this.PB_B2.TabIndex = 11;
@@ -1552,7 +1660,7 @@
             // 
             this.PB_B1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PB_B1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PB_B1.Location = new System.Drawing.Point(417, 223);
+            this.PB_B1.Location = new System.Drawing.Point(516, 223);
             this.PB_B1.Name = "PB_B1";
             this.PB_B1.Size = new System.Drawing.Size(52, 42);
             this.PB_B1.TabIndex = 10;
@@ -1562,7 +1670,7 @@
             // 
             this.PB_T6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PB_T6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PB_T6.Location = new System.Drawing.Point(682, 177);
+            this.PB_T6.Location = new System.Drawing.Point(781, 177);
             this.PB_T6.Name = "PB_T6";
             this.PB_T6.Size = new System.Drawing.Size(52, 42);
             this.PB_T6.TabIndex = 9;
@@ -1572,7 +1680,7 @@
             // 
             this.PB_T5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PB_T5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PB_T5.Location = new System.Drawing.Point(629, 177);
+            this.PB_T5.Location = new System.Drawing.Point(728, 177);
             this.PB_T5.Name = "PB_T5";
             this.PB_T5.Size = new System.Drawing.Size(52, 42);
             this.PB_T5.TabIndex = 8;
@@ -1582,7 +1690,7 @@
             // 
             this.PB_T4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PB_T4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PB_T4.Location = new System.Drawing.Point(576, 177);
+            this.PB_T4.Location = new System.Drawing.Point(675, 177);
             this.PB_T4.Name = "PB_T4";
             this.PB_T4.Size = new System.Drawing.Size(52, 42);
             this.PB_T4.TabIndex = 7;
@@ -1592,7 +1700,7 @@
             // 
             this.PB_T3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PB_T3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PB_T3.Location = new System.Drawing.Point(523, 177);
+            this.PB_T3.Location = new System.Drawing.Point(622, 177);
             this.PB_T3.Name = "PB_T3";
             this.PB_T3.Size = new System.Drawing.Size(52, 42);
             this.PB_T3.TabIndex = 6;
@@ -1602,7 +1710,7 @@
             // 
             this.PB_T2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PB_T2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PB_T2.Location = new System.Drawing.Point(470, 177);
+            this.PB_T2.Location = new System.Drawing.Point(569, 177);
             this.PB_T2.Name = "PB_T2";
             this.PB_T2.Size = new System.Drawing.Size(52, 42);
             this.PB_T2.TabIndex = 5;
@@ -1612,7 +1720,7 @@
             // 
             this.PB_T1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PB_T1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PB_T1.Location = new System.Drawing.Point(417, 177);
+            this.PB_T1.Location = new System.Drawing.Point(516, 177);
             this.PB_T1.Name = "PB_T1";
             this.PB_T1.Size = new System.Drawing.Size(52, 42);
             this.PB_T1.TabIndex = 4;
@@ -1631,7 +1739,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(744, 436);
+            this.ClientSize = new System.Drawing.Size(843, 436);
             this.Controls.Add(this.L_Shortcuts);
             this.Controls.Add(this.L_TScore);
             this.Controls.Add(this.L_BScore);
@@ -1663,11 +1771,11 @@
             this.Text = "Stream Assist";
             this.GB_Top.ResumeLayout(false);
             this.GB_Top.PerformLayout();
+            this.mnu_ResetClear.ResumeLayout(false);
             this.GB_Config.ResumeLayout(false);
             this.GB_Config.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_PCT)).EndInit();
-            this.mnu_ResetClear.ResumeLayout(false);
             this.GB_Bot.ResumeLayout(false);
             this.GB_Bot.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PB_F2)).EndInit();
@@ -1799,6 +1907,18 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label L_Shortcuts;
+        private System.Windows.Forms.CheckBox CHK_Shiny6;
+        private System.Windows.Forms.CheckBox CHK_Shiny5;
+        private System.Windows.Forms.CheckBox CHK_Shiny4;
+        private System.Windows.Forms.CheckBox CHK_Shiny3;
+        private System.Windows.Forms.CheckBox CHK_Shiny2;
+        private System.Windows.Forms.CheckBox CHK_Shiny1;
+        private System.Windows.Forms.CheckBox CHK_ShinyB6;
+        private System.Windows.Forms.CheckBox CHK_ShinyB5;
+        private System.Windows.Forms.CheckBox CHK_ShinyB4;
+        private System.Windows.Forms.CheckBox CHK_ShinyB3;
+        private System.Windows.Forms.CheckBox CHK_ShinyB2;
+        private System.Windows.Forms.CheckBox CHK_ShinyB1;
     }
 }
 

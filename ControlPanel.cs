@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -8,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using pkStreamAssist.Properties;
+using PKHeX.Core;
 
 namespace pkStreamAssist
 {
@@ -15,7 +16,9 @@ namespace pkStreamAssist
     {
         public ControlPanel()
         {
+            PKX.AllowShinySprite = true;
             InitializeComponent();
+            GameInfo.InitializeDataSources(GameInfo.Strings = GameInfo.GetStrings(curlanguage));
             TSpecies = new[] {CB_TSpecies1, CB_TSpecies2, CB_TSpecies3, CB_TSpecies4, CB_TSpecies5, CB_TSpecies6};
             BSpecies = new[] {CB_BSpecies1, CB_BSpecies2, CB_BSpecies3, CB_BSpecies4, CB_BSpecies5, CB_BSpecies6};
             TForms = new[] {CB_TForm1, CB_TForm2, CB_TForm3, CB_TForm4, CB_TForm5, CB_TForm6};
@@ -26,6 +29,8 @@ namespace pkStreamAssist
             BFNT = new[] {CHK_BX1, CHK_BX2, CHK_BX3, CHK_BX4, CHK_BX5, CHK_BX6};
             TStatus = new[] {CB_TStatus1, CB_TStatus2, CB_TStatus3, CB_TStatus4, CB_TStatus5, CB_TStatus6};
             BStatus = new[] {CB_BStatus1, CB_BStatus2, CB_BStatus3, CB_BStatus4, CB_BStatus5, CB_BStatus6};
+            TShiny = new[] {CHK_Shiny1, CHK_Shiny2, CHK_Shiny3, CHK_Shiny4, CHK_Shiny5, CHK_Shiny6};
+            BShiny = new[] {CHK_ShinyB1, CHK_ShinyB2, CHK_ShinyB3, CHK_ShinyB4, CHK_ShinyB5, CHK_ShinyB6};
 
             TPKM = new[] {PB_T1, PB_T2, PB_T3, PB_T4, PB_T5, PB_T6};
             BPKM = new[] {PB_B1, PB_B2, PB_B3, PB_B4, PB_B5, PB_B6};
@@ -59,14 +64,13 @@ namespace pkStreamAssist
         private readonly ComboBox[] TForms, BForms;
         private readonly CheckBox[] TUsed, BUsed;
         private readonly CheckBox[] TFNT, BFNT;
+        private readonly CheckBox[] TShiny, BShiny;
         private readonly ComboBox[] TStatus, BStatus;
         private readonly PictureBox[] TPKM, BPKM;
         private readonly Label[] TRCount;
         private readonly bool Setup;
 
         private bool resetting;
-        private string[] specieslist, types, forms = { };
-        private List<Util.cbItem> SpeciesDataSource;
         private string curlanguage = "en";
 
         private void clickMenu(object sender, EventArgs e)
@@ -121,15 +125,11 @@ namespace pkStreamAssist
         {
             if (CB_Lang.SelectedIndex < 8)
                 curlanguage = lang_val[CB_Lang.SelectedIndex];
-
-            string l = curlanguage;
-            forms = Util.getStringList("Forms", l);
-            types = Util.getStringList("Types", l);
+            
+            GameInfo.InitializeDataSources(GameInfo.Strings = GameInfo.GetStrings(curlanguage));
 
             // Update Species
-            specieslist = Util.getStringList("Species", l);
-            specieslist[0] = "---";
-            SpeciesDataSource = Util.getCBList(specieslist, null);
+            var SpeciesDataSource = GameInfo.SpeciesDataSource;
 
             foreach (var c in TSpecies)
                 c.DataSource = new BindingSource(SpeciesDataSource, null);
@@ -193,12 +193,13 @@ namespace pkStreamAssist
             }).Start();
         }
 
+        public static string[] GenderSymbols { get; private set; } = { "♂", "♀", "-" };
         private void updateSpecies(object sender, EventArgs e)
         {
             bool top = TSpecies.Contains(sender as ComboBox);
             int index = Array.IndexOf(top ? TSpecies : BSpecies, sender as ComboBox);
             int species = Util.getIndex((top ? TSpecies : BSpecies)[index]);
-            (top ? TForms : BForms)[index].DataSource = PKX.getFormList(species, types, forms, gendersymbols, 7).ToList();
+            (top ? TForms : BForms)[index].DataSource = PKX.GetFormList(species, GameInfo.Strings.types, GameInfo.Strings.forms, GenderSymbols, 7).ToList();
             updateControls(index, top);
             updatePB(Array.IndexOf(top ? TSpecies : BSpecies, sender as ComboBox), top);
         }
@@ -228,9 +229,19 @@ namespace pkStreamAssist
             bool top = TStatus.Contains(sender as ComboBox);
             updatePB(Array.IndexOf(top ? TStatus : BStatus, sender as ComboBox), top);
         }
+        private void updateShiny(object sender, EventArgs e)
+        {
+            bool top = TShiny.Contains(sender as CheckBox);
+            int index = Array.IndexOf(top ? TFNT : BFNT, sender as CheckBox);
+            changePKMPerBattle(null, null);
+            updateControls(index, top);
+            updatePB(Array.IndexOf(top ? TShiny : BShiny, sender as CheckBox), top);
+        }
 
         private void updateControls(int index, bool top)
         {
+            if (index < 0)
+                return;
             int species = Util.getIndex((top ? TSpecies : BSpecies)[index]);
             (top ? TForms : BForms)[index].Enabled = (top ? TForms : BForms)[index].Items.Count > 1;
             if (species < 1)
@@ -249,7 +260,7 @@ namespace pkStreamAssist
         }
         private void updatePB(int slot, bool top)
         {
-            if (!CHK_Update.Checked)
+            if (!CHK_Update.Checked || slot < 0)
                 return;
             if (resetting)
             { (top ? TPKM : BPKM)[slot].Image = null; goto save; }
@@ -260,8 +271,9 @@ namespace pkStreamAssist
             bool used = (top ? TUsed : BUsed)[slot].Checked;
             bool faint = (top ? TFNT : BFNT)[slot].Checked;
             int status = (top ? TStatus : BStatus)[slot].SelectedIndex;
+            bool shiny = (top ? TShiny : BShiny)[slot].Checked;
 
-            (top ? TPKM : BPKM)[slot].Image = getSlotImage(species, form, used, faint, status, top);
+            (top ? TPKM : BPKM)[slot].Image = getSlotImage(species, form, used, faint, status, top, shiny);
             save:
             if (!Setup)
                 return;
@@ -284,9 +296,47 @@ namespace pkStreamAssist
             // Update Viewer
             updateViewer();
         }
-        private Bitmap getSlotImage(int species, int form, bool used, bool faint, int status, bool top)
+
+        private const int generation = 7;
+        public static Image GetSprite(int species, int form, bool shiny)
         {
-            Bitmap img = PKX.getSprite(species, form);
+            int gender = 0;
+            if (species == 0)
+                return Resources._0;
+
+            string file = PKX.GetResourceStringSprite(species, form, gender, generation, shiny);
+
+            // Redrawing logic
+            Image baseImage = (Image)Resources.ResourceManager.GetObject(file);
+            if (FormConverter.IsTotemForm(species, form))
+            {
+                form = FormConverter.GetTotemBaseForm(species, form);
+                file = PKX.GetResourceStringSprite(species, form, gender, generation, shiny);
+                baseImage = (Image)Resources.ResourceManager.GetObject(file);
+                baseImage = ImageUtil.ToGrayscale(baseImage);
+            }
+            if (baseImage == null)
+            {
+                if (shiny) // try again without shiny
+                {
+                    file = PKX.GetResourceStringSprite(species, form, gender, generation);
+                    baseImage = (Image)Resources.ResourceManager.GetObject(file);
+                }
+                if (baseImage == null)
+                    baseImage = (Image)Resources.ResourceManager.GetObject($"_{species}");
+                baseImage = baseImage != null ? ImageUtil.LayerImage(baseImage, Resources.unknown, 0, 0, .5) : Resources.unknown;
+            }
+            if (shiny)
+            {
+                // Add shiny star to top left of image.
+                var rare = Resources.rare_icon;
+                baseImage = ImageUtil.LayerImage(baseImage, rare, 0, 0, 0.7);
+            }
+            return baseImage;
+        }
+        private Bitmap getSlotImage(int species, int form, bool used, bool faint, int status, bool top, bool shiny)
+        {
+            var img = GetSprite(species, form, shiny);
 
             if (!used && species > 0)
                 img = Util.ChangeOpacity(img, (float)NUD_PCT.Value / 100);
@@ -310,7 +360,7 @@ namespace pkStreamAssist
             }
             if (status > 0 && !faint)
             {
-                Image sprite = (Image)Properties.Resources.ResourceManager.GetObject("s" + status + "_" + curlanguage);
+                Image sprite = (Image)Resources.ResourceManager.GetObject("s" + status + "_" + curlanguage);
                 finalimg = Util.LayerImage(finalimg, sprite, 0, 30, 1);
             }
             return finalimg;
